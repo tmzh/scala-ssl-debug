@@ -1,5 +1,3 @@
-package ScalaSSLTest
-
 import java.security.cert.X509Certificate
 
 import javax.net.ssl.X509TrustManager
@@ -13,6 +11,7 @@ class CustomTrustManager {
       x509Certificates.zipWithIndex.foreach {
         case (certificate, index)  =>
           val certificateInfo = CertUtils.formatCertificate(certificate)
+          println(s"chain [$index]")
           println(certificateInfo)
       }
     }

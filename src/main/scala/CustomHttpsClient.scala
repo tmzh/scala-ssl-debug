@@ -1,11 +1,9 @@
-package ScalaSSLTest
-
 import javax.net.ssl.{HostnameVerifier, HttpsURLConnection, SSLContext, SSLSession, TrustManager}
 import java.net.URL
 
 class CustomHttpsClient(acceptAnyCertificate: Boolean,
                         acceptAnyHost: Boolean) {
-  val sslContext = if (!acceptAnyCertificate) SSLContext.getDefault else {
+  val sslContext: SSLContext = if (!acceptAnyCertificate) SSLContext.getDefault else {
     val customTrustManager = new CustomTrustManager()
     val trustManager = customTrustManager.trustManager
     val ctx = SSLContext.getInstance("TLS")
@@ -14,7 +12,7 @@ class CustomHttpsClient(acceptAnyCertificate: Boolean,
     ctx
   }
 
-  val hostnameVerifier = if (!acceptAnyHost) {
+  val hostnameVerifier: HostnameVerifier = if (!acceptAnyHost) {
     HttpsURLConnection.getDefaultHostnameVerifier
   } else {
     val customHostnameVerifier = new HostnameVerifier {

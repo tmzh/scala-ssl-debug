@@ -1,4 +1,3 @@
-package ScalaSSLTest
 import java.security.cert.X509Certificate
 
 object CertUtils {
@@ -16,15 +15,15 @@ object CertUtils {
 
     val certMessage =
       s"""
-        |version                   : v${version}
-        |serial number             : ${serialNumber}
-        |signature algorithm       : ${signatureAlgorithm}
-        |issuer                    : ${issuer}
-        |not before                : ${notBefore}
-        |not  after                : ${notAfter}
-        |subject                   : ${subject}
-        |subject alternative names : ${subjectAlternativeNames}
-        |subject public key        : ${subjectPublicKey}
+        |version                   : v$version
+        |serial number             : $serialNumber
+        |signature algorithm       : $signatureAlgorithm
+        |issuer                    : $issuer
+        |not before                : $notBefore
+        |not  after                : $notAfter
+        |subject                   : $subject
+        |subject alternative names : $subjectAlternativeNames
+        |subject public key        : $subjectPublicKey
         """.stripMargin
 
     certMessage
