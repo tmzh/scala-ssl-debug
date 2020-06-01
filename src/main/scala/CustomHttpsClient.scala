@@ -1,4 +1,4 @@
-package ScalaSSLDebug
+package ScalaSSLTest
 
 import javax.net.ssl.{HostnameVerifier, HttpsURLConnection, SSLContext, SSLSession, TrustManager}
 import java.net.URL

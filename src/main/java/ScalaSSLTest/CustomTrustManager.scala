@@ -1,35 +1,30 @@
-package ScalaSSLDebug
+package ScalaSSLTest
 
-import java.security.KeyStore
 import java.security.cert.X509Certificate
 
-import com.typesafe.scalalogging.Logger
-import javax.net.ssl.{SSLContext, TrustManager, X509TrustManager}
+import javax.net.ssl.X509TrustManager
 
 
 class CustomTrustManager {
-  val logger = Logger("console")
 
-  val trustManager = new X509TrustManager() {
+  val trustManager:X509TrustManager = new X509TrustManager() {
     override def checkClientTrusted(x509Certificates: Array[X509Certificate], s: String): Unit = {
-      logger.info("Client certificate information")
+      println("Client certificate information")
       x509Certificates.zipWithIndex.foreach {
-        case (certificate, index)  => {
+        case (certificate, index)  =>
           val certificateInfo = CertUtils.formatCertificate(certificate)
-          logger.info(certificateInfo)
-        }
+          println(certificateInfo)
       }
     }
 
 
     override def checkServerTrusted(x509Certificates: Array[X509Certificate], s: String): Unit = {
-      logger.info("Server certificates information")
+      println("Server certificates information")
       x509Certificates.zipWithIndex.foreach {
-        case (certificate, index)  => {
+        case (certificate, index)  =>
           val certificateInfo = CertUtils.formatCertificate(certificate)
-          logger.info(s"chain [${index}]")
-          logger.info(certificateInfo)
-        }
+          println(s"chain [$index]")
+          println(certificateInfo)
       }
     }
 

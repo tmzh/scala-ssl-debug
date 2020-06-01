@@ -1,4 +1,4 @@
-package ScalaSSLDebug
+package ScalaSSLTest
 import java.security.cert.X509Certificate
 
 object CertUtils {
