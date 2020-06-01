@@ -16,7 +16,7 @@ object Main {
     println(s"javaHome is : ${javaHome}")
 
     val httpsClient = new CustomHttpsClient(true, true)
-    httpsClient.connect(httpsUrl)
+    httpsClient.testConnect(httpsUrl)
   }
 
 }

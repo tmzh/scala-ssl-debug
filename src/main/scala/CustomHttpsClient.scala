@@ -1,10 +1,7 @@
 package ScalaSSLDebug
 
 import javax.net.ssl.{HostnameVerifier, HttpsURLConnection, SSLContext, SSLSession, TrustManager}
-import java.io.FileOutputStream
 import java.net.URL
-import java.security.cert.X509Certificate
-import sun.security.ssl.SSLLogger
 
 class CustomHttpsClient(acceptAnyCertificate: Boolean,
                         acceptAnyHost: Boolean) {
@@ -21,12 +18,16 @@ class CustomHttpsClient(acceptAnyCertificate: Boolean,
     HttpsURLConnection.getDefaultHostnameVerifier
   } else {
     val customHostnameVerifier = new HostnameVerifier {
-      override def verify(s: String, sslSession: SSLSession): Boolean = true
+      override def verify(hostName: String, sslSession: SSLSession): Boolean = {
+        println("Host: ", hostName)
+        println("Session Peer: ", sslSession.getPeerHost)
+        true
+      }
     }
     customHostnameVerifier
   }
 
-  def connect(httpsUrl: String): Unit = {
+  def testConnect(httpsUrl: String): Unit = {
     val url = new URL(httpsUrl)
     val connection:HttpsURLConnection = url.openConnection.asInstanceOf[HttpsURLConnection]
     connection.setHostnameVerifier(this.hostnameVerifier)
